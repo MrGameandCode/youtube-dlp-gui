@@ -34,8 +34,23 @@ jobs:
       run: |
         cd dist && zip -r youtube-dlp-gui.zip main resources
 
-    - name: Archive build artifacts
-      uses: actions/upload-artifact@v2
+    - name: Create GitHub Release
+      id: create_release
+      uses: actions/create-release@v1
       with:
-        name: build-artifacts
-        path: dist/youtube-dlp-gui.zip
+        tag_name: v1.0.0
+        release_name: Release v1.0.0
+        body: |
+          This is the first public release.
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: dist/youtube-dlp-gui.zip
+        asset_name: youtube-dlp-gui.zip
+        asset_content_type: application/zip
