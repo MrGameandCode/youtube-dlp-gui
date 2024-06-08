@@ -54,3 +54,5 @@ jobs:
         asset_path: dist/youtube-dlp-gui.zip
         asset_name: youtube-dlp-gui.zip
         asset_content_type: application/zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
