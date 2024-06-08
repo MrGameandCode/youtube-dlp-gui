@@ -24,7 +24,7 @@ jobs:
 
     - name: Build executable with PyInstaller
       run: |
-        pyinstaller --onefile --add-data "resources;resources" --name "youtube-dlp-gui.exe" main.py
+        pyinstaller --onefile --name "youtube-dlp-gui.exe" main.py
         pwd
         ls -lhrt
         ls -lhrt build
