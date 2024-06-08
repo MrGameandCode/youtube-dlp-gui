@@ -29,7 +29,7 @@ jobs:
     - name: Copy resources directory to dist
       run: |
         cp -r resources dist/
-        cp dist/main.exe dist/main.exe
+        cp main.exe dist/main.exe
 
     - name: Compress executable and resources
       run: |
