@@ -36,16 +36,16 @@ jobs:
 
     - name: Compress executable and resources
       run: |
-        cd dist && zip -r youtube-dlp-gui.zip main resources
+        cd dist && zip -r youtube-dlp-gui.zip youtube-dlp-gui.exe resources
 
     - name: Create GitHub Release
       id: create_release
       uses: actions/create-release@v1
       with:
-        tag_name: v1.0.2
-        release_name: Release v1.0.2
+        tag_name: v1.0.3
+        release_name: Release v1.0.3
         body: |
-          Version 1.0.2 ready for you :)
+          Version 1.0.3 ready for you :)
         draft: false
         prerelease: false
       env:
