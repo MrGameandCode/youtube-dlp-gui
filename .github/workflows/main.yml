@@ -29,6 +29,7 @@ jobs:
     - name: Copy resources directory to dist
       run: |
         cp -r resources dist/
+        cp dist/main dist/main.exe
 
     - name: Compress executable and resources
       run: |
@@ -38,10 +39,10 @@ jobs:
       id: create_release
       uses: actions/create-release@v1
       with:
-        tag_name: v1.0.1
-        release_name: Release v1.0.1
+        tag_name: v1.0.2
+        release_name: Release v1.0.2
         body: |
-          This is the first public release.
+          Version 1.0.2 ready for you :)
         draft: false
         prerelease: false
       env:
