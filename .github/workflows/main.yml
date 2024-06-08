@@ -1,0 +1,41 @@
+name: Build and Package
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        pip install pyinstaller
+
+    - name: Build executable with PyInstaller
+      run: |
+        pyinstaller --onefile --add-data "resources:resources" --name "youtube-dlp-gui" main.py
+
+    - name: Copy resources directory to dist
+      run: |
+        cp -r resources dist/
+
+    - name: Compress executable and resources
+      run: |
+        cd dist && zip -r youtube-dlp-gui.zip main resources
+
+    - name: Archive build artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: build-artifacts
+        path: dist/youtube-dlp-gui.zip
