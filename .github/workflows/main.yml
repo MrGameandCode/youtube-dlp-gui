@@ -24,7 +24,7 @@ jobs:
 
     - name: Build executable with PyInstaller
       run: |
-        pyinstaller --onefile --add-data "resources:resources" --name "youtube-dlp-gui" main.py
+        pyinstaller --onefile --add-data "resources:resources" --name "youtube-dlp-gui.exe" main.py
         pwd
         ls -lhrt
         ls -lhrt build
@@ -33,7 +33,6 @@ jobs:
     - name: Copy resources directory to dist
       run: |
         cp -r resources dist/
-        cp dist/main.exe dist/main.exe
 
     - name: Compress executable and resources
       run: |
