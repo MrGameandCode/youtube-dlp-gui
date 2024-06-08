@@ -219,13 +219,9 @@ class MainView(tk.Frame):
     
     def stop_downloads(self):
         logging.info("Stopping processes")
-        #print(self.launched_threads)
         for proc in self.launched_threads:
-            #os.killpg(os.getpgid(proceso.pid), signal.SIGTERM)
             print(proc.pid)
-            #os.kill(proceso.pid, signal.CTRL_C_EVENT) #funciona en windows, pero mata nuestra ventana
             subprocess.call(['taskkill', '/F', '/T', '/PID',  str(proc.pid)])
-            #proceso.terminate()
         self.launched_threads = []
         for i in self.treeview.get_children():
             element = list(self.treeview.item(i, 'values'))
