@@ -13,26 +13,10 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
-
-    - name: Install dependencies
-      run: |
-        pip install pyinstaller
-
-    - name: Build executable with PyInstaller
-      run: |
-        pyinstaller --onefile --name "youtube-dlp-gui.exe" main.py
-        pwd
-        ls -lhrt
-        ls -lhrt build
-        ls -lhrt dist
-
     - name: Copy resources directory to dist
       run: |
         cp -r resources dist/
+        ls -lhRt
 
     - name: Compress executable and resources
       run: |
@@ -42,10 +26,10 @@ jobs:
       id: create_release
       uses: actions/create-release@v1
       with:
-        tag_name: v1.0.4
-        release_name: Release v1.0.4
+        tag_name: v1.0.5
+        release_name: Release v1.0.5
         body: |
-          Version 1.0.4 ready for you :)
+          Version 1.0.5, compiled for windows users :)
         draft: false
         prerelease: false
       env:
