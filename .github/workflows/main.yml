@@ -24,7 +24,11 @@ jobs:
 
     - name: Build executable with PyInstaller
       run: |
-        pyinstaller --onefile --add-data "resources:resources" --name "youtube-dlp-gui" main.py
+        pyinstaller --onefile --name "youtube-dlp-gui.exe" main.py
+        pwd
+        ls -lhrt
+        ls -lhrt build
+        ls -lhrt dist
 
     - name: Copy resources directory to dist
       run: |
@@ -32,16 +36,16 @@ jobs:
 
     - name: Compress executable and resources
       run: |
-        cd dist && zip -r youtube-dlp-gui.zip main resources
+        cd dist && zip -r youtube-dlp-gui.zip youtube-dlp-gui.exe resources
 
     - name: Create GitHub Release
       id: create_release
       uses: actions/create-release@v1
       with:
-        tag_name: v1.0.0
-        release_name: Release v1.0.0
+        tag_name: v1.0.4
+        release_name: Release v1.0.4
         body: |
-          This is the first public release.
+          Version 1.0.4 ready for you :)
         draft: false
         prerelease: false
       env:
@@ -54,3 +58,5 @@ jobs:
         asset_path: dist/youtube-dlp-gui.zip
         asset_name: youtube-dlp-gui.zip
         asset_content_type: application/zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
