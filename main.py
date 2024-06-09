@@ -360,7 +360,7 @@ def read_config():
         logging.info('Config file detected')
     else:
         logging.warning('No config file')
-        print("No config gile, so we create one with default values")
+        print("No config file, so we create one with default values")
         config = configparser.ConfigParser()
         config['external.files'] = {
             'yt-dlp.version': ''
@@ -371,7 +371,7 @@ def read_config():
             'min-size-width' : '1280',
             'max-size-height' : '1600',
             'max-size-width' : '2560',
-            'treeview-width' : '100'
+            'treeview-width' : '650'
         }
         with open(os.path.join("config.ini"), 'w') as configfile:
             config.write(configfile)
